@@ -3,6 +3,8 @@ import bootcamp.ecosystem.enums.Gender;
 import bootcamp.ecosystem.enums.Person;
 import bootcamp.ecosystem.enums.PersonRepository;
 
+import java.util.Optional;
+
 public class Main {
     public static void main(String[] args) {
         PersonRepository personRepository = new PersonRepository();
@@ -21,5 +23,27 @@ public class Main {
         System.out.println();
         System.out.println("Personen mit dem Lieblingswochentag Montag:");
         System.out.println(personRepository.searchForPeoplesFavoriteDay(DaysOfWeek.FRIDAY));
+
+        System.out.println("\r\n##################  Person anhand ihrer ID suchen  ##################\r\n");
+        Optional<Person> personOptional = personRepository.searchForPersonById("2");
+        if(personOptional.isPresent()) {
+            System.out.println("Name: " + personOptional.get().name() + " Lieblingstag: " + personOptional.get().favoriteDay().getValue());
+        }
+
+        System.out.println();
+        personOptional = personRepository.searchForPersonById("5");
+        personOptional.ifPresent(person -> System.out.println("Name: " + person.name() + " Lieblingstag: " + person.favoriteDay().getValue()));
+
+        System.out.println();
+        personOptional = personRepository.searchForPersonById("6");
+        personOptional.ifPresent(person -> System.out.println("Name: " + person.name() + " Lieblingstag: " + person.favoriteDay().getValue()));
+
+        System.out.println("##################  Person anhand ihres Namens suchen  ##################\r\n");
+        personOptional = personRepository.searchForPersonByName("Jane Doe");
+        personOptional.ifPresent(person -> System.out.println("Name: " + person.name() + " Lieblingstag: " + person.favoriteDay().getValue()));
+
+        System.out.println();
+        personOptional = personRepository.searchForPersonByName("Alex Doner");
+        personOptional.ifPresent(person -> System.out.println("Name: " + person.name() + " Lieblingstag: " + person.favoriteDay().getValue()));
     }
 }

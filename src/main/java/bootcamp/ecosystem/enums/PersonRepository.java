@@ -3,6 +3,7 @@ package bootcamp.ecosystem.enums;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class PersonRepository {
@@ -57,5 +58,13 @@ public class PersonRepository {
             }
         }
         return people;
+    }
+
+    public Optional<Person> searchForPersonById(String id) {
+        return this.people.stream().filter(person -> person.id().equals(id)).findFirst();
+    }
+
+    public Optional<Person> searchForPersonByName(String name) {
+        return this.people.stream().filter(person -> person.name().equalsIgnoreCase(name)).findFirst();
     }
 }
