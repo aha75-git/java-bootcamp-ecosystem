@@ -2,6 +2,8 @@ package bootcamp.ecosystem.enums;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class PersonRepository {
     private final List<Person> people;
@@ -31,22 +33,20 @@ public class PersonRepository {
     }
 
     public void printCountsNumberOfPeopleByGender() {
-        int countMale = 0;
-        int  countFemale = 0;
-        int countOther = 0;
-
-        for (Person person : this.people) {
-            if(person.gender() == Gender.MALE) {
-                countMale++;
-            } else if(person.gender() == Gender.FEMALE) {
-                countFemale++;
-            } else if(person.gender() == Gender.OTHER) {
-                countOther++;
+        for(Map.Entry<Gender, Long> entries :  countByGender(this.people).entrySet()) {
+            if (entries.getKey().equals(Gender.MALE)) {
+                System.out.println("Anzahl der männlichen Personen: " + entries.getValue());
+            } else if(entries.getKey().equals(Gender.FEMALE)) {
+                System.out.println("Anzahl der weiblichen Personen: " + entries.getValue());
+            } else if(entries.getKey().equals(Gender.OTHER)) {
+                System.out.println("Anzahl der diversen Personen: " + entries.getValue());
             }
         }
-        System.out.println("Anzahl der männlichen Personen: " + countMale);
-        System.out.println("Anzahl der weiblichen Personen: " + countFemale);
-        System.out.println("Anzahl der diversen Personen: " + countOther);
+    }
+
+    public static Map<Gender, Long> countByGender(List<Person> people) {
+        return people.stream()
+                .collect(Collectors.groupingBy(Person::gender, Collectors.counting()));
     }
 
     public List<Person> searchForPeoplesFavoriteDay(DaysOfWeek dayOfWeek) {
