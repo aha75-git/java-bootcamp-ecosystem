@@ -10,7 +10,7 @@ public class Main {
         personRepository.add(new Person("2", "Jane Doe", DaysOfWeek.MONDAY, Gender.FEMALE));
         personRepository.add(new Person("3", "Melanie Doe", DaysOfWeek.SATURDAY, Gender.FEMALE));
         personRepository.add(new Person("4", "Alex Doe", DaysOfWeek.SUNDAY, Gender.MALE));
-        personRepository.add(new Person("4", "Peter Doe", DaysOfWeek.FRIDAY, Gender.MALE));
+        personRepository.add(new Person("5", "Peter Doe", DaysOfWeek.FRIDAY, Gender.MALE));
 
         System.out.println(personRepository.printPeople());
         System.out.println();

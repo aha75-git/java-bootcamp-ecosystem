@@ -1,5 +1,7 @@
 package bootcamp.ecosystem.enums;
 
+import java.util.Arrays;
+
 public enum DaysOfWeek {
     MONDAY("Montag"),
     TUESDAY("Dienstag"),
@@ -17,5 +19,11 @@ public enum DaysOfWeek {
 
     public String getValue() {
         return this.value;
+    }
+
+    public static String[] names() {
+        return Arrays.stream(DaysOfWeek.values())
+                .map(Enum::name)
+                .toArray(String[]::new);
     }
 }
