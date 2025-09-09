@@ -1,7 +1,10 @@
+import bootcamp.ecosystem.animal.Animal;
+import bootcamp.ecosystem.datetime.DateTimeManagement;
 import bootcamp.ecosystem.enums.*;
 import bootcamp.ecosystem.streams.StreamsManagement;
 import bootcamp.ecosystem.students.StudentProcessing;
 
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -24,7 +27,9 @@ public class Main {
             System.out.println("1. Enums Aufgabe ausführen");
             System.out.println("2. Streams Aufgabe ausführen");
             System.out.println("3. Studenten aus der CSV-Datei lesen");
-            System.out.println("4. Programm beenden");
+            System.out.println("4. Date-Time Aufgabe ausführen");
+            System.out.println("5. Animal Aufgabe ausführen");
+            System.out.println("6. Programm beenden");
             System.out.print("Wählen Sie eine Option: ");
 
             int choice = scanner.nextInt();
@@ -41,6 +46,12 @@ public class Main {
                     StudentProcessing.readStudents();
                     break;
                 case 4:
+                    DateTimeManagement.executeExercises();
+                    break;
+                case 5:
+                    new Animal("Bello", LocalDate.of(2022, 7, 15)).printDaysUntilNextBirthday(); // Geburtstag am 15. September 2022
+                    break;
+                case 6:
                     System.out.println(ANSI_RED + "Programm beendet." + ANSI_RESET);
                     return;
                 default:
